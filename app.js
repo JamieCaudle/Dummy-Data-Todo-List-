@@ -1216,13 +1216,27 @@ const fetchTodos = () => {
     .then((json) => (arrayOfTodos = json));
 };
 
+let orderedList = document.querySelector("ol");
+
 const populateTodos = () => {
   for (let i = 0; i < arrayOfTodos.length; i++) {
     const element = arrayOfTodos[i];
 
     let newLi = document.createElement("li");
-    let newtext = document.createTextNode(arrayOfTodos[i].title);
-    newLi.appendChild(newtext);
-    document.getElementById("todoList").appendChild(newLi);
+
+    newLi.innerText = element.title;
+
+    orderedList.appendChild(newLi);
+
+    // Another way to do it below
+
+    // let newLi = document.createElement("li");
+    // let newtext = document.createTextNode(arrayOfTodos[i].title);
+    // newLi.appendChild(newtext);
+    // document.getElementById("todoList").appendChild(newLi);
+
+    if (element.completed === false) {
+      document.querySelector("li").style.color = "red";
+    }
   }
 };
